@@ -13,4 +13,4 @@ systemctl daemon-reload
 systemctl enable catalogue
 systemctl start catalogue
 dnf install mongodb-org-shell -y
-mongo --host mongod-dev.kruthikadevops.online	 </app/schema/catalogue.js
+mongo --host mongod-dev.kruthikadevops.online	</app/schema/catalogue.js
