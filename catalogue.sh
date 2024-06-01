@@ -3,10 +3,11 @@ dnf module enable nodejs:18 -y
 dnf install nodejs -y
 useradd roboshop
 mkdir /app
+cp catalogue.service /etc/systemd/system/catalogue.service
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
 cd /app
 unzip /tmp/catalogue.zip
-cp catalogue.service /etc/systemd/system/catalogue.service
+
 npm install
 systemctl daemon-reload
 systemctl enable catalogue
