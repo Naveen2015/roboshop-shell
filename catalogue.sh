@@ -18,7 +18,7 @@ echo -e "\e[36m unzip App Content\e[0m"
 unzip /tmp/catalogue.zip
 
 echo -e "\e[36m copy catalogue service file to systemd\e[0m"
-cp catalogue.service /etc/systemd/system/catalogue.service
+cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
 
 echo -e "\e[36m NPM install\e[0m"
 
@@ -26,5 +26,6 @@ npm install
 systemctl daemon-reload
 systemctl enable catalogue
 systemctl restart catalogue
+cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
 dnf install mongodb-org-shell -y
 mongo --host mongod-dev.kruthikadevops.online	</app/schema/catalogue.js
