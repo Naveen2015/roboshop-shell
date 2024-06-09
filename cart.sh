@@ -4,7 +4,7 @@ dnf module enable nodejs:18 -y
 dnf install nodejs -y
 echo -e "\e[32m Adding Application user\e[0m"
 useradd roboshop
-echo -e "\e[32m copying userservice file to systemd\e[0m"
+echo -e "\e[32m copying cart service file to systemd\e[0m"
 cp /home/centos/roboshop-shell/cart.service /etc/systemd/system/cart.service
 echo -e "\e[32m Creating application directory\e[0m"
 rm -rf /app
@@ -18,5 +18,5 @@ echo -e "\e[32m Installing npm\e[0m"
 npm install
 echo -e "\e[32m Starting cart service\e[0m"
 systemctl daemon-reload
-systemctl enable user
-systemctl restart user
+systemctl enable cart
+systemctl restart cart
