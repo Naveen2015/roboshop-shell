@@ -1,10 +1,29 @@
-echo -e "\e[32m Installing mysql\e[0m"
-dnf module disable mysql -y
-cp /home/centos/roboshop-shell/mysql.repo /etc/yum.repos.d/mysql.repo
-dnf install mysql-community-server -y
+script=$(realpath $0)
+script_path=$(dirname $script)
+source script_path/common.sh
+mysql_root_password=$1
 
-echo -e "\e[32m staring mysql \e[0m"
+if [ -z "$mysql_root_password" ]
+then
+  echo Input MySQL Root Password Missing
+  exit
+  fi
+func_print_heading "Installing mysql"
+dnf module disable mysql -y
+dnf install mysql-community-server -y
+func_stat_check $?
+
+
+func_print_heading "copying my sql repo file to yum repos"
+cp /home/centos/roboshop-shell/mysql.repo /etc/yum.repos.d/mysql.repo
+func_stat_check $?
+
+func_print_heading "Reset mysql password"
+mysql_secure_installation --set-root-pass RoboShop@1
+func_stat_check $?
+
+func_print_heading "staring mysql"
 systemctl enable mysqld
 systemctl restart mysqld
-echo -e "\e[32m Reset mysql password \e[0m"
-mysql_secure_installation --set-root-pass RoboShop@1
+func_stat_check $?
+
