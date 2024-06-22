@@ -20,7 +20,7 @@ func_stat_check $?
 
 
 func_print_heading "Reset mysql password"
-mysql_secure_installation --set-root-pass mysql_root_password
+mysql_secure_installation --set-root-pass $mysql_root_password
 func_stat_check $?
 
 func_print_heading "staring mysql"
