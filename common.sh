@@ -88,13 +88,12 @@ func_stat_check $?
      func_print_heading "Installing maven"
     dnf install maven -y
   func_stat_check $?
-
-     func_print_heading "copying service file"
+func_prereq
 
 
     func_print_heading "Mvn operations"
     mvn clean package
-    mv target/${component_name}-1.0.jar shipping.jar
+    mv target/${component_name}-1.0.jar ${component_name}.jar
     
      func_print_heading "Installing mysql"
     dnf install mysql -y
