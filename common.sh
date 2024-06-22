@@ -17,6 +17,15 @@
     func_print_heading "Loading Schema"
     mongo --host mongod-dev.kruthikadevops.online	</app/schema/${component_name}.js
   fi
+  if [ "${schema_setup}" == "mysql" ]; then
+      func_print_head "Install MySQL Client"
+      yum install mysql -y
+      func_stat_check $?
+
+      func_print_head "Load Schema"
+      mysql -h mysql-dev.kruthikadevops.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql
+      func_stat_check $?
+    fi
   }
   func_systemd()
   {
