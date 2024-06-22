@@ -15,11 +15,11 @@ func_stat_check $?
 
 
 func_print_heading "copying my sql repo file to yum repos"
-cp /home/centos/roboshop-shell/mysql.repo /etc/yum.repos.d/mysql.repo
+cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
 func_stat_check $?
 
 func_print_heading "Reset mysql password"
-mysql_secure_installation --set-root-pass RoboShop@1
+mysql_secure_installation --set-root-pass mysql_root_password
 func_stat_check $?
 
 func_print_heading "staring mysql"
