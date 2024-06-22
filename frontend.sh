@@ -5,7 +5,7 @@ source ${script_path}/common.sh
 func_print_heading "Installing Nginx"
 dnf install nginx -y
 func_stat_check $?
-func_print_heading "copying conf to nginx config location"
+func_print_heading  "copying conf to nginx config location"
 cp ${script_path}/roboshop.conf /etc/nginx/default.d/roboshop.conf
 
 func_print_heading "removing nginx default directory"
