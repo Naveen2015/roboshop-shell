@@ -6,7 +6,7 @@ mysql_root_password=$1
 if [ -z "$mysql_root_password" ]
 then
   echo Input MySQL Root Password Missing
-  exit
+  exit 1
   fi
 func_print_heading "Installing mysql"
 dnf module disable mysql -y
@@ -17,14 +17,14 @@ dnf install mysql-community-server -y
 func_stat_check $?
 
 
-
-
-func_print_heading "Reset mysql password"
-mysql_secure_installation --set-root-pass ${mysql_root_password}
-func_stat_check $?
-
 func_print_heading "staring mysql"
 systemctl enable mysqld
 systemctl restart mysqld
 func_stat_check $?
+
+func_print_heading "Reset mysql password"
+mysql_secure_installation --set-root-pass $mysql_root_password
+func_stat_check $?
+
+
 
