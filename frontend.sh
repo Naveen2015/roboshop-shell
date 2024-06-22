@@ -6,7 +6,7 @@ func_print_heading "Installing Nginx"
 dnf install nginx -y
 func_stat_check $?
 func_print_heading "copying conf to nginx config location"
-cp roboshop.conf /etc/nginx/default.d/roboshop.conf
+cp ${script_path}/roboshop.conf /etc/nginx/default.d/roboshop.conf
 
 func_print_heading "removing nginx default directory"
 rm -rf /usr/share/nginx/html/*
