@@ -3,7 +3,7 @@ script_path=$(dirname $script)
 source  ${script_path}/common.sh
 
 func_print_heading "copying mongo repo file to yum repository"
-cp mongo.repo /etc/yum.repos.d/mongo.repo
+cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 func_stat_check $?
 
 func_print_heading "Installing MongoDB"
