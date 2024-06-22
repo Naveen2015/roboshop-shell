@@ -114,6 +114,7 @@ func_prereq
 func_print_heading "Install python dependencies"
 pip3.6 install -r requirements.txt
 
-func_systemd
+
 sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}|" ${script_path}/payment.service
+func_systemd
   }
