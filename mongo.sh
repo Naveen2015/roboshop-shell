@@ -1,6 +1,6 @@
 script=$(realpath $0)
 script_path=$(dirname $script)
-source script_path/common.sh
+source  ${script_path}/common.sh
 
 func_print_heading "copying mongo repo file to yum repository"
 cp mongo.repo /etc/yum.repos.d/mongo.repo
