@@ -10,13 +10,14 @@ then
   fi
 func_print_heading "Installing mysql"
 dnf module disable mysql -y
+func_print_heading "copying my sql repo file to yum repos"
+cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
+func_stat_check $?
 dnf install mysql-community-server -y
 func_stat_check $?
 
 
-func_print_heading "copying my sql repo file to yum repos"
-cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
-func_stat_check $?
+
 
 func_print_heading "Reset mysql password"
 mysql_secure_installation --set-root-pass mysql_root_password
